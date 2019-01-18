@@ -1,14 +1,14 @@
-import Vue from 'vue'
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-import Vuex from 'vuex'
-Vue.use(Vuex)
+import user from '@/store/user';
 
-import user from '@/store/user'
+Vue.use(Vuex);
 
 const store = new Vuex.Store({
-    modules: {
-        user
-    }
-})
+  modules: {
+    user,
+  },
+});
 
-export default store
+export default store;

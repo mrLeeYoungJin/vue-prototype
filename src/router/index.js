@@ -12,17 +12,41 @@ const router = new Router({
       path: '/',
       name: 'home',
       component: Home,
+      meta: {title: 'Home'},
     },
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      // component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
-      component: About
-    }
-  ]
+      component: About,
+      meta: {title: 'About'},
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: Home,
+      meta: {title: 'dashboard', requiresAuth: true},
+      children: [
+        { path: '', component: Home },
+        { path: 'singleDevice', component: Home, meta: {title: 'singleDevice'} },
+        { path: 'deviceStatus', component: Home, meta: {title: 'deviceStatus'} },
+      ]
+    },
+  ],
+});
+
+router.beforeEach((to, from, next) => {
+    // Start our vue-progressbar
+    router.app.$Progress.start()
+
+    // To set the title of each route
+    document.title = to.meta.title
+
+    next()
 })
 
-export default router
+router.afterEach((to, from) => {
+    // End our vue-progressbar
+    router.app.$Progress.finish()
+})
+
+export default router;
