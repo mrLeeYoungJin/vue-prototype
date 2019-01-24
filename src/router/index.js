@@ -72,7 +72,9 @@ router.beforeEach((to, from, next) => {
 
   if (to.meta.requiresAuth && isEmpty(router.app.$options.store.getters['user/user'])) {
     next({ name: 'login' });
-    document.location.href = '/login';
+    if(!isEmpty(from.name)) {
+      document.location.href = '/login';
+    }
   } else {
     next();
   }
