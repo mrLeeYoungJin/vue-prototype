@@ -67,17 +67,23 @@ router.beforeEach((to, from, next) => {
   const accessToken = localStore.getAccessToken();
 
   if (!isEmpty(accessToken)) {
-    router.app.$options.store.dispatch('user/setUserAndTokens', { accessToken });
+    if(to.name == 'login') {
+      document.location.href = '/';
+      return;
+    } else {
+      router.app.$options.store.dispatch('user/setUserAndTokens', { accessToken });
+    }
   }
 
   if (to.meta.requiresAuth && isEmpty(router.app.$options.store.getters['user/user'])) {
     next({ name: 'login' });
     if(!isEmpty(from.name)) {
       document.location.href = '/login';
+      return;
     }
-  } else {
-    next();
   }
+
+  next();
 });
 
 router.afterEach((to, from) => {

@@ -74,7 +74,7 @@ export default {
           this.email = '';
           this.password = '';
           this.$refs.form.reset();
-          this.$router.replace({ name: 'home' });
+          this.$router.replace({ name: 'main' });
         } catch (error) {
           this.$toasted.error('Hmm, those details don\'t seem right.');
         }
