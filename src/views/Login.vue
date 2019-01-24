@@ -78,6 +78,7 @@ export default {
           this.$refs.form.reset();
           this.$router.replace({ name: 'main' });
         } catch (error) {
+          console.log('====', error);
           this.$toasted.error('Hmm, those details don\'t seem right.');
         }
       }
