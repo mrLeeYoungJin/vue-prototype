@@ -22,7 +22,7 @@ router.beforeEach((to, from, next) => {
   router.app.$options.store.dispatch('system/getSystemUuid');
   const accessToken = localStore.getAccessToken();
 
-  if (!isEmpty(accessToken)) {
+  if (accessToken) {
     if (to.name === 'login') {
       document.location.href = '/';
       return;
@@ -33,7 +33,7 @@ router.beforeEach((to, from, next) => {
 
   if (to.meta.requiresAuth && isEmpty(router.app.$options.store.getters['user/user'])) {
     next({ name: 'login' });
-    if (!isEmpty(from.name)) {
+    if (from.name) {
       document.location.href = '/login';
       return;
     }
