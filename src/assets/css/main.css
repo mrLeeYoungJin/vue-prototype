@@ -1,0 +1,11 @@
+.toasted-container-class {
+  top: 35px;
+  width: auto;
+  height: auto;
+}
+
+.toasted.primary {
+  top: 35px;
+  width: auth;
+  min-height: 50px;
+}
