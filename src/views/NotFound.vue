@@ -8,10 +8,10 @@
 
 <script>
 export default {
-    name: 'notFound',
-    mounted () {
-    }
-}
+  name: 'notFound',
+  mounted() {
+  },
+};
 </script>
 
 <style lang="sass" scoped>

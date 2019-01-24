@@ -6,9 +6,9 @@ import About from '@/views/About.vue';
 import Login from '@/views/Login.vue';
 
 // Other
-import NotFound from '@/views/NotFound.vue'
+import NotFound from '@/views/NotFound.vue';
 
-import { getUUID, isEmpty } from '@/common/utilities';
+import { isEmpty } from '@/common/utilities';
 import * as localStore from '@/common/local-storage';
 
 Vue.use(Router);
@@ -17,10 +17,10 @@ const router = new Router({
   mode: 'history',
   routes: [
     {
-        path: '*',
-        component: NotFound,
-        name: 'notFound',
-        meta: {title: 'Not Found'}
+      path: '*',
+      component: NotFound,
+      name: 'notFound',
+      meta: { title: 'Not Found' },
     },
     {
       path: '/',
@@ -68,17 +68,17 @@ router.beforeEach((to, from, next) => {
   const accessToken = localStore.getAccessToken();
 
   if (!isEmpty(accessToken)) {
-    if(to.name == 'login') {
+    if (to.name === 'login') {
       document.location.href = '/';
       return;
-    } else {
-      router.app.$options.store.dispatch('user/setUserAndTokens', { accessToken });
     }
+
+    router.app.$options.store.dispatch('user/setUserAndTokens', { accessToken });
   }
 
   if (to.meta.requiresAuth && isEmpty(router.app.$options.store.getters['user/user'])) {
     next({ name: 'login' });
-    if(!isEmpty(from.name)) {
+    if (!isEmpty(from.name)) {
       document.location.href = '/login';
       return;
     }

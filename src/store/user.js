@@ -7,7 +7,7 @@ import jwtDecode from 'jwt-decode';
 import { tosAuthAxios, tosApiAxios } from '@/common/axios';
 import * as localStore from '@/common/local-storage';
 
-import { USER_AUTH_LOGIN_PATH, USER_AUTH_LOGOUT_PATH  } from '@/common/uriinfo';
+import { USER_AUTH_LOGIN_PATH, USER_AUTH_LOGOUT_PATH } from '@/common/uriinfo';
 import { SET_USER, SET_ACCESS_TOKEN, SET_REFRESH_TOKEN } from './mutation-types';
 
 Vue.use(Vuex);
@@ -16,8 +16,6 @@ const tempAccessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwdnRvYy
 
 tosApiAxios.interceptors.request.use((config) => {
   console.log('========interceptors.request : ');
-
-
   return config;
 }, error => Promise.reject(error));
 
