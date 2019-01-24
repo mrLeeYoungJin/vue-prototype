@@ -1,34 +1,32 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <v-app id="inspire">
+    <Navbar />
+    <v-content>
+      <router-view/>
+    </v-content>
+    <v-footer color="indigo" app inset>
+      <span class="white--text">&copy; 2018</span>
+    </v-footer>
 
     <!-- set progressbar -->
     <vue-progress-bar></vue-progress-bar>
+    </v-app>
   </div>
 </template>
 
 <script>
+
+import Navbar from '@/components/layouts/Navbar.vue';
+
 export default {
-  mounted() {
-    this.$Progress.finish();
+  name: 'app',
+  components: {
+    Navbar,
   },
   created() {
-    this.$Progress.start();
-    this.$router.beforeEach((to, from, next) => {
-      if (to.meta.progress !== undefined) {
-        const meta = to.meta.progress;
-        this.$Progress.parseMeta(meta);
-      }
-      this.$Progress.start();
-      next();
-    });
-    this.$router.afterEach((to, from) => {
-      this.$Progress.finish();
-    });
+  },
+  mounted() {
   },
 };
 </script>
