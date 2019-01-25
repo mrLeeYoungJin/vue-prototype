@@ -1,4 +1,4 @@
-# tos_web
+# vue-prototype
 
 ## Project setup
 ```
